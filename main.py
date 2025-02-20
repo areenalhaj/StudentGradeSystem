@@ -1,3 +1,6 @@
+import string
+
+
 def count_class_members(taken_dict):
     return len(taken_dict)
 
@@ -48,7 +51,7 @@ def highest_and_lowest_grade(taken_dict):
     else:
         return 0
 
-def find_stds(grade):
+def find_stds(grade, taken_dict):
     name = []
     for key, val in taken_dict.items():
         if val == grade:
@@ -60,7 +63,7 @@ def find_stds(grade):
 
 def top_student(taken_dict):
     grade = highest_grade(taken_dict)
-    find_stds(grade)
+    find_stds(grade, taken_dict)
 
 
 def performance(grade):
@@ -95,9 +98,9 @@ while(check != "stop"):
 print(f"""Class Performance Report
 ------------------------
 Total Students:{count_class_members(data_dict)}
-Average Grade: {calc_average(data_dict)}
-Highest Grade: {highest_grade()} ({})
-Lowest Grade: {lowest_grade()} ({})
+Average Grade: {round(calc_average(data_dict), 2)}
+Highest Grade: {highest_grade(data_dict)} ({", ".join(find_stds(highest_grade(data_dict),data_dict))})
+Lowest Grade: {lowest_grade(data_dict)} ({", ".join(find_stds(lowest_grade(data_dict),data_dict))})
 """)
 
 performance(90)
