@@ -72,9 +72,20 @@ def performance(grade):
         return "Good"
     else:
         return "Needs Improvement"
-
+def check_if_num(message):
+    while True:
+        data = input(message)
+        try:
+            number = float(data)
+            return number
+        except ValueError:
+            print("Invalid grade value, enter a float or integer.")
+# *******************
+# Program starts here:
+# *******************
 print("Welcome to this Student Grade Management System.")
-print()
+
+# Entering data:
 check = "go on"
 data_dict = {}
 while(check != "stop"):
@@ -82,22 +93,17 @@ while(check != "stop"):
     if name == "done":
         check= "stop"
     else:
-        grade = float(input("Enter Ali's grade: "))
+        grade = check_if_num("Enter student grade: ")
         data_dict[name]=grade
 
-
-# count_class_members(data_dict)
-# calc_average(data_dict)
-
-# highest_grade(data_dict)
-# lowest_grade(data_dict)
-# highest_and_lowest_grade(data_dict)
-# top_student(data_dict)
-
+# *************************
+# Printing the eport of data
+# *************************
+print(14*"\n")
 print(f"""
 Class Performance Report
 ------------------------
-Total Students:{count_class_members(data_dict)}
+Total Students: {count_class_members(data_dict)}
 Average Grade: {round(calc_average(data_dict), 2)}
 Highest Grade: {highest_grade(data_dict)} ({", ".join(find_stds(highest_grade(data_dict),data_dict))})
 Lowest Grade: {lowest_grade(data_dict)} ({", ".join(find_stds(lowest_grade(data_dict),data_dict))})
