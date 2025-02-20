@@ -1,8 +1,8 @@
-def class_members(taken_dict):
+def count_class_members(taken_dict):
     return len(taken_dict)
 
 def calc_average(taken_dict):
-    count = class_members(taken_dict)
+    count = count_class_members(taken_dict)
     if count == 0:
         return 0
     grades_sum = 0
@@ -12,7 +12,7 @@ def calc_average(taken_dict):
     return average
 
 def highest_grade(taken_dict):
-    if class_members(taken_dict)!=0:
+    if count_class_members(taken_dict)!=0:
         highest = 0
         for std_name in taken_dict:
             grade = taken_dict[std_name]
@@ -23,7 +23,7 @@ def highest_grade(taken_dict):
         return 0
 
 def lowest_grade(taken_dict):
-    if class_members(taken_dict)!=0:
+    if count_class_members(taken_dict)!=0:
         lowest = 100
         for std_name in taken_dict:
             grade = taken_dict[std_name]
@@ -35,7 +35,7 @@ def lowest_grade(taken_dict):
         return 0
 
 def highest_and_lowest_grade(taken_dict):
-    if class_members(taken_dict)!=0:
+    if count_class_members(taken_dict)!=0:
         lowest = 100
         highest = 0
         for std_name in taken_dict:
@@ -48,13 +48,20 @@ def highest_and_lowest_grade(taken_dict):
     else:
         return 0
 
-def top_student(taken_dict):
-    grade = highest_grade(taken_dict)
-    name =[]
-    for key,val in taken_dict.items():
+def find_stds(grade):
+    name = []
+    for key, val in taken_dict.items():
         if val == grade:
             name.append(key)
-    return name
+    if len(name) == 0:
+        return "No students"
+    else:
+        return name
+
+def top_student(taken_dict):
+    grade = highest_grade(taken_dict)
+    find_stds(grade)
+
 
 def performance(grade):
     if(grade>=90 and grade<=100):
@@ -76,12 +83,21 @@ while(check != "stop"):
         grade = float(input("Enter Ali's grade: "))
         data_dict[name]=grade
 
-print("Class Performance Report"
-      "\n-------------------------")
-print(class_members(data_dict))
-print(calc_average(data_dict))
-print(highest_grade(data_dict))
-print(lowest_grade(data_dict))
-print(highest_and_lowest_grade(data_dict))
-print(top_student(data_dict))
-print(performance(90))
+
+# count_class_members(data_dict)
+# calc_average(data_dict)
+
+# highest_grade(data_dict)
+# lowest_grade(data_dict)
+# highest_and_lowest_grade(data_dict)
+# top_student(data_dict)
+
+print(f"""Class Performance Report
+------------------------
+Total Students:{count_class_members(data_dict)}
+Average Grade: {calc_average(data_dict)}
+Highest Grade: {highest_grade()} ({})
+Lowest Grade: {lowest_grade()} ({})
+""")
+
+performance(90)
