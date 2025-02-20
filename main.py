@@ -32,7 +32,6 @@ def lowest_grade(taken_dict):
             grade = taken_dict[std_name]
             if grade < lowest:
                 lowest = taken_dict[std_name]
-                lowest_name = std_name
         return lowest
     else:
         return 0
@@ -95,12 +94,14 @@ while(check != "stop"):
 # highest_and_lowest_grade(data_dict)
 # top_student(data_dict)
 
-print(f"""Class Performance Report
+print(f"""
+Class Performance Report
 ------------------------
 Total Students:{count_class_members(data_dict)}
 Average Grade: {round(calc_average(data_dict), 2)}
 Highest Grade: {highest_grade(data_dict)} ({", ".join(find_stds(highest_grade(data_dict),data_dict))})
 Lowest Grade: {lowest_grade(data_dict)} ({", ".join(find_stds(lowest_grade(data_dict),data_dict))})
 """)
-
-performance(90)
+print("Performance Breakdown:")
+for std_name in data_dict:
+    print(f"{std_name} - {data_dict[std_name]} ({performance(data_dict[std_name])})")
