@@ -20,7 +20,7 @@ def highest_grade(taken_dict):
                 highest = taken_dict[std_name]
         return highest
     else:
-        return 2
+        return 0
 
 def lowest_grade(taken_dict):
     if class_members(taken_dict)!=0:
